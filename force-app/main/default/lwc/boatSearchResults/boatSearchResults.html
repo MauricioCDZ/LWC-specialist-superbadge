@@ -1,0 +1,43 @@
+<template>
+    <lightning-tabset variant="scoped">
+      <lightning-tab label="Gallery">
+        <template if:true={boats.data}>
+        <div class="slds-scrollable_y">
+          <!-- layout horizontally aligned to the center  -->
+          <!-- layout allowing multiple rows -->
+          <lightning-layout horizontal-align="center" multiple-rows="true">
+            <!-- template looping through each boat -->
+            <template for:each={boats.data} for:item="boat">
+              <!-- lightning-layout-item for each boat -->
+              <lightning-layout-item key={boat.Id} size="12" small-device-size="6"  medium-device-size="4" large-device-size="3" padding="around-small" >
+                 <!-- Each BoatTile goes here -->
+                 <c-boat-tile boat={boat} onboatselect={updateSelectedTile} selected-boat-id={selectedBoatId}>
+                 </c-boat-tile>
+              </lightning-layout-item>
+            </template>
+          </lightning-layout>
+        </div>
+    </template>
+      </lightning-tab>
+      <lightning-tab label="Boat Editor">
+        <!-- Scrollable div and lightning datatable go here -->
+        <template if:true={boats.data}>
+            <div class="slds-scrollable_y">
+                <lightning-datatable
+                key-field="Id"
+                data={boats.data}
+                columns={columns}
+                onsave={handleSave}
+                draft-values={draftValues} hide-checkbox-column>
+            </lightning-datatable>
+                
+            </div>
+        </template>
+      </lightning-tab>
+       <lightning-tab label="Boats Near Me">
+        <!-- boatsNearMe component goes here -->
+        <c-boats-near-me boat-type-id={boatTypeId}></c-boats-near-me>
+      </lightning-tab>
+    </lightning-tabset>
+  </template>
+  

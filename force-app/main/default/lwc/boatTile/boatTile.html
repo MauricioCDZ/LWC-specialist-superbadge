@@ -1,0 +1,23 @@
+<template>
+    <div onclick={selectBoat} class={tileClass}>
+      <div style={backgroundStyle} class="tile"></div>
+      <div class="lower-third">
+        <!-- Boat information goes here -->
+        <h1 class="slds-truncate slds-text-heading_medium">{boat.Name}</h1>
+        <h2 class="slds-truncate slds-text-heading_small ">{boat.Contact__r.Name}</h2>
+        <div class="slds-text-body_small">
+            Price: <lightning-formatted-number format-style="currency" currency-code="USD" maximum-fraction-digits="2" value={boat.Price__c}>
+
+            </lightning-formatted-number>
+        </div>
+      </div>
+      <div class="slds-text-body_small">
+          Length: {boat.Length__c}
+      </div>
+      <div class="slds-text-body_small">
+        Type: {boat.BoatType__r.Name}
+    </div>
+
+    </div>
+  </template>
+  
